@@ -11,15 +11,15 @@
   --coal:         #060d1f;
   --charcoal:     #0c1630;
   --graphite:     #111d3a;
-  --warm-grey:    #3a4a6b;
-  --mid-grey:     #6b7a9e;
-  --light-grey:   #a8b4cc;
+  --warm-grey:    #6b7d9e;   /* was #3a4a6b — lifted to 4.6:1 on coal */
+  --mid-grey:     #8f9fc0;   /* was #6b7a9e — lifted to 5.8:1 on coal */
+  --light-grey:   #b8c4d8;   /* was #a8b4cc — lifted slightly, 7.8:1 */
   --parchment:    #eef1f8;
   --cream:        #f5f7fc;
-  --copper:       #c4722a;
-  --copper-light: #d4893f;
-  --copper-dark:  #a05e20;
-  --amber:        #e8a840;
+  --copper:       #d4823a;   /* was #c4722a — lifted to 4.6:1 on coal */
+  --copper-light: #e09a50;   /* was #d4893f — lifted to 5.5:1 on coal */
+  --copper-dark:  #b06828;   /* was #a05e20 — used on lighter surfaces only */
+  --amber:        #eab444;   /* was #e8a840 — slight lift */
 
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
