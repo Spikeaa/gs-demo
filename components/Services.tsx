@@ -56,6 +56,9 @@ const services = [
 
 export default function Services() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const rafRef = useRef<number>(0);
+  const dirRef = useRef<1 | -1>(1); // 1 = forward, -1 = reverse
 
   useEffect(() => {
     const els = sectionRef.current?.querySelectorAll(".reveal");
@@ -66,6 +69,34 @@ export default function Services() {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
+  }, []);
+
+  // Ping-pong playback via RAF
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const step = () => {
+      if (!video.duration || !isFinite(video.duration)) {
+        rafRef.current = requestAnimationFrame(step);
+        return;
+      }
+      // ~30fps advance per frame (0.033s per RAF tick at 60fps)
+      video.currentTime += dirRef.current * 0.033;
+
+      if (video.currentTime >= video.duration) {
+        video.currentTime = video.duration;
+        dirRef.current = -1;
+      } else if (video.currentTime <= 0) {
+        video.currentTime = 0;
+        dirRef.current = 1;
+      }
+
+      rafRef.current = requestAnimationFrame(step);
+    };
+
+    rafRef.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
   return (
@@ -91,11 +122,11 @@ export default function Services() {
         zIndex: 0,
       }}>
         <video
+          ref={videoRef}
           src="/videos/content.mp4"
-          autoPlay
-          loop
           muted
           playsInline
+          preload="auto"
           style={{
             width: "100%",
             height: "100%",
