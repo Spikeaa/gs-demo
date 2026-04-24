@@ -71,38 +71,51 @@ export default function Services() {
     return () => io.disconnect();
   }, []);
 
-  // Ping-pong playback via RAF — timestamp-based so speed is constant at any refresh rate
+  // Ping-pong: native play() forward, RAF-based scrub in reverse
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    let lastTs: number | null = null;
-
-    const step = (ts: number) => {
-      if (!video.duration || !isFinite(video.duration)) {
-        rafRef.current = requestAnimationFrame(step);
-        return;
-      }
-
-      if (lastTs !== null) {
-        const delta = (ts - lastTs) / 1000; // seconds elapsed since last frame
-        video.currentTime += dirRef.current * delta; // 1× real-time speed
-
-        if (video.currentTime >= video.duration) {
-          video.currentTime = video.duration;
-          dirRef.current = -1;
-        } else if (video.currentTime <= 0) {
-          video.currentTime = 0;
-          dirRef.current = 1;
-        }
-      }
-
-      lastTs = ts;
-      rafRef.current = requestAnimationFrame(step);
+    const startForward = () => {
+      dirRef.current = 1;
+      cancelAnimationFrame(rafRef.current);
+      video.playbackRate = 1;
+      video.play();
     };
 
-    rafRef.current = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(rafRef.current);
+    const startReverse = () => {
+      dirRef.current = -1;
+      video.pause();
+
+      let lastTs: number | null = null;
+      const scrub = (ts: number) => {
+        if (lastTs !== null) {
+          const delta = (ts - lastTs) / 1000;
+          video.currentTime = Math.max(0, video.currentTime - delta);
+          if (video.currentTime <= 0) {
+            video.currentTime = 0;
+            startForward();
+            return;
+          }
+        }
+        lastTs = ts;
+        rafRef.current = requestAnimationFrame(scrub);
+      };
+      rafRef.current = requestAnimationFrame(scrub);
+    };
+
+    // When forward playback ends, switch to reverse
+    const onEnded = () => startReverse();
+    video.addEventListener("ended", onEnded);
+
+    // Kick off
+    startForward();
+
+    return () => {
+      video.removeEventListener("ended", onEnded);
+      cancelAnimationFrame(rafRef.current);
+      video.pause();
+    };
   }, []);
 
   return (
