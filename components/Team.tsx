@@ -80,7 +80,7 @@ export default function Team() {
         pointerEvents: "none",
       }} />
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px", position: "relative", zIndex: 10 }}>
+      <div className="inner-pad" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px", position: "relative", zIndex: 10 }}>
         {/* Header — left-aligned (not centred, variance > 4) */}
         <div style={{ marginBottom: 64 }}>
           <div className="reveal" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>

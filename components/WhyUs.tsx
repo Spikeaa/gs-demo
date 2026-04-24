@@ -70,7 +70,7 @@ export default function WhyUs() {
         pointerEvents: "none",
       }} />
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
+      <div className="inner-pad" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
 
         {/* About — split layout */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 88, alignItems: "center" }}
@@ -197,7 +197,7 @@ export default function WhyUs() {
             }} />
 
             {/* Floating stat badge */}
-            <div style={{
+            <div className="stat-badge" style={{
               position: "absolute",
               bottom: 28,
               right: -20,

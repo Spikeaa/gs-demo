@@ -37,7 +37,7 @@ export default function Footer() {
       background: "var(--charcoal)",
       borderTop: "1px solid rgba(196,114,42,0.12)",
     }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "72px 48px 40px" }}>
+      <div className="inner-pad footer-inner" style={{ maxWidth: 1280, margin: "0 auto", padding: "72px 48px 40px" }}>
 
         {/* Main grid */}
         <div style={{

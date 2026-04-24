@@ -72,6 +72,7 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
+      className="services-section"
       style={{
         position: "relative",
         background: "var(--coal)",
@@ -132,7 +133,7 @@ export default function Services() {
       </div>
 
       {/* Content — sits above video */}
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
+      <div className="inner-pad" style={{ position: "relative", zIndex: 1, maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
 
         {/* Header */}
         <div style={{ marginBottom: 64 }}>

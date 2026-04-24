@@ -71,13 +71,13 @@ export default function Hero() {
       }} />
 
       {/* Decorative GS watermark */}
-      <div style={{
+      <div className="hero-watermark" style={{
         position: "absolute",
         right: "-3%",
         top: "50%",
         transform: "translateY(-50%)",
         fontFamily: "'Cormorant Garamond', serif",
-        fontSize: "clamp(140px, 22vw, 300px)",
+        fontSize: "clamp(100px, 22vw, 300px)",
         fontWeight: 700,
         color: "transparent",
         WebkitTextStroke: "1px rgba(196,114,42,0.04)",
@@ -244,7 +244,8 @@ export default function Hero() {
 
       <style>{`
         @media (max-width: 640px) {
-          h1 { font-size: clamp(48px, 14vw, 72px) !important; }
+          h1 { font-size: clamp(44px, 13vw, 72px) !important; }
+          .hero-watermark { display: none; }
         }
       `}</style>
     </section>

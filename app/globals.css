@@ -264,32 +264,63 @@ body::after {
 .stagger-6 { opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.7s forwards; }
 
 /* ─── Mobile overrides ──────────────────────────────────────── */
-@media (max-width: 768px) {
-  /* Hero — tighter padding, wrap stats */
-  .hero-content { padding: 120px 24px 72px !important; }
-  .hero-stats { gap: 0 !important; flex-wrap: wrap !important; }
-  .hero-stats > div { min-width: 50%; }
 
-  /* Services — hide decorative video on mobile, expand cards full width */
-  .services-video { display: none !important; }
-  .services-cards { max-width: 100% !important; }
-  .services-header { max-width: 100% !important; grid-template-columns: 1fr !important; }
-
-  /* WhyUs about grid stacks */
-  .about-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+/* Tablet (≤900px) */
+@media (max-width: 900px) {
+  .about-grid   { grid-template-columns: 1fr !important; gap: 48px !important; }
   .reasons-grid { grid-template-columns: 1fr 1fr !important; }
-
-  /* Team grid */
-  .team-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .team-header { grid-template-columns: 1fr !important; }
+  .team-grid    { grid-template-columns: repeat(2, 1fr) !important; }
+  .team-header  { grid-template-columns: 1fr !important; }
   .team-header p { text-align: left !important; }
+  .footer-grid  { grid-template-columns: 1fr 1fr !important; gap: 40px !important; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+  .services-header { grid-template-columns: 1fr !important; max-width: 100% !important; }
+  .services-header p { display: none; }
 }
 
+/* Mobile (≤768px) */
+@media (max-width: 768px) {
+  /* Hero */
+  .hero-content { padding: 110px 20px 64px !important; }
+  .hero-ctas    { flex-direction: column !important; align-items: stretch !important; }
+  .hero-ctas a  { width: 100% !important; justify-content: center !important; }
+  .hero-stats   { flex-wrap: wrap !important; }
+  .hero-stats > div { min-width: 50% !important; }
+
+  /* Services — hide video, expand cards full width */
+  .services-video  { display: none !important; }
+  .services-cards  { max-width: 100% !important; }
+
+  /* Section inner padding */
+  .inner-pad { padding-left: 20px !important; padding-right: 20px !important; }
+
+  /* WhyUs stat badge — pull back inside container */
+  .stat-badge { right: 12px !important; bottom: 16px !important; }
+
+  /* Team photo height — shorter on mobile */
+  .team-grid > div > div:first-child { height: 220px !important; }
+}
+
+/* Small mobile (≤480px) */
 @media (max-width: 480px) {
-  .hero-ctas { flex-direction: column !important; }
-  .hero-ctas a { width: 100%; justify-content: center; }
-  .hero-stats > div { min-width: 50%; padding: 12px 0 !important; }
-  .reasons-grid { grid-template-columns: 1fr !important; }
-  .team-grid { grid-template-columns: 1fr !important; }
-  .footer-grid { grid-template-columns: 1fr !important; }
+  .hero-stats > div { min-width: 50% !important; }
+  .reasons-grid     { grid-template-columns: 1fr !important; }
+  .team-grid        { grid-template-columns: 1fr !important; }
+  .footer-grid      { grid-template-columns: 1fr !important; }
+  .footer-inner     { padding: 48px 20px 32px !important; }
+
+  /* Services section vertical padding */
+  .services-section { padding: 72px 0 80px !important; }
+
+  /* WhyUs section */
+  #why-us { padding: 72px 0 80px !important; }
+
+  /* Team section */
+  #team   { padding-top: 72px !important; }
+
+  /* Tighten section vertical padding */
+  section.py-32 { padding-top: 64px !important; padding-bottom: 64px !important; }
+
+  /* Service cards — tighter padding on tiny screens */
+  .services-cards > div { padding: 18px 16px !important; }
 }
