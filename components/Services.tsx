@@ -71,27 +71,33 @@ export default function Services() {
     return () => io.disconnect();
   }, []);
 
-  // Ping-pong playback via RAF
+  // Ping-pong playback via RAF — timestamp-based so speed is constant at any refresh rate
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const step = () => {
+    let lastTs: number | null = null;
+
+    const step = (ts: number) => {
       if (!video.duration || !isFinite(video.duration)) {
         rafRef.current = requestAnimationFrame(step);
         return;
       }
-      // ~30fps advance per frame (0.033s per RAF tick at 60fps)
-      video.currentTime += dirRef.current * 0.033;
 
-      if (video.currentTime >= video.duration) {
-        video.currentTime = video.duration;
-        dirRef.current = -1;
-      } else if (video.currentTime <= 0) {
-        video.currentTime = 0;
-        dirRef.current = 1;
+      if (lastTs !== null) {
+        const delta = (ts - lastTs) / 1000; // seconds elapsed since last frame
+        video.currentTime += dirRef.current * delta; // 1× real-time speed
+
+        if (video.currentTime >= video.duration) {
+          video.currentTime = video.duration;
+          dirRef.current = -1;
+        } else if (video.currentTime <= 0) {
+          video.currentTime = 0;
+          dirRef.current = 1;
+        }
       }
 
+      lastTs = ts;
       rafRef.current = requestAnimationFrame(step);
     };
 
