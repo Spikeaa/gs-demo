@@ -79,7 +79,7 @@ export default function Services() {
     const startForward = () => {
       dirRef.current = 1;
       cancelAnimationFrame(rafRef.current);
-      video.playbackRate = 1;
+      video.playbackRate = 1.6;
       video.play();
     };
 
@@ -91,7 +91,7 @@ export default function Services() {
       const scrub = (ts: number) => {
         if (lastTs !== null) {
           const delta = (ts - lastTs) / 1000;
-          video.currentTime = Math.max(0, video.currentTime - delta);
+          video.currentTime = Math.max(0, video.currentTime - delta * 1.6);
           if (video.currentTime <= 0) {
             video.currentTime = 0;
             startForward();
