@@ -2,20 +2,23 @@
 
 import { MapPin } from "lucide-react";
 
-const areas = [
-  { name: "Colchester", primary: true, note: "Our home base" },
-  { name: "Clacton-on-Sea", primary: true, note: "Full coverage" },
-  { name: "Harwich", primary: true, note: "Full coverage" },
-  { name: "Manningtree", primary: false, note: "Full coverage" },
-  { name: "Ipswich", primary: true, note: "Full coverage" },
-  { name: "Mersea Island", primary: false, note: "Full coverage" },
-  { name: "Chelmsford", primary: true, note: "Full coverage" },
-  { name: "Witham", primary: false, note: "Full coverage" },
-  { name: "Braintree", primary: false, note: "Full coverage" },
-  { name: "Sudbury", primary: false, note: "Full coverage" },
-  { name: "Felixstowe", primary: false, note: "Full coverage" },
-  { name: "Hadleigh", primary: false, note: "Full coverage" },
-  { name: "Surrounding Essex & Suffolk", primary: false, note: "Please enquire" },
+const primaryAreas = [
+  "Colchester",
+  "Clacton-on-Sea",
+  "Harwich",
+  "Ipswich",
+  "Chelmsford",
+];
+
+const secondaryAreas = [
+  "Manningtree",
+  "Mersea Island",
+  "Witham",
+  "Braintree",
+  "Sudbury",
+  "Felixstowe",
+  "Hadleigh",
+  "Surrounding Essex & Suffolk",
 ];
 
 export default function Coverage() {
@@ -66,59 +69,90 @@ export default function Coverage() {
             </a>
           </div>
 
-          {/* Right: areas grid */}
+          {/* Right: areas */}
           <div>
-            <div
+            {/* Primary areas */}
+            <p
               style={{
-                border: "1px solid rgba(196,114,42,0.25)",
-                borderRadius: 4,
-                overflow: "hidden",
+                fontFamily: "'Figtree', sans-serif",
+                fontSize: "0.7rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "var(--copper-light)",
+                marginBottom: 14,
               }}
             >
-              <div
-                className="grid grid-cols-2"
-                style={{ gap: "1px", background: "rgba(196,114,42,0.15)" }}
-              >
-                {areas.map((area) => (
-                  <div
-                    key={area.name}
-                    className="flex items-center gap-3 px-5 py-4 cursor-default transition-all duration-200"
-                    style={{ background: "var(--charcoal)" }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "rgba(196,114,42,0.1)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "var(--charcoal)";
-                    }}
-                  >
-                    <MapPin
-                      size={13}
-                      style={{ color: "var(--copper-light)", flexShrink: 0 }}
-                    />
-                    <span
-                      style={{
-                        fontFamily: "'Figtree', sans-serif",
-                        fontSize: "0.875rem",
-                        fontWeight: area.primary ? 600 : 400,
-                        color: area.primary ? "var(--copper-light)" : "var(--copper)",
-                        letterSpacing: area.primary ? "0.02em" : undefined,
-                      }}
-                    >
-                      {area.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
+              Main Coverage
+            </p>
+            <div className="flex flex-wrap gap-3 mb-8">
+              {primaryAreas.map((name) => (
+                <div
+                  key={name}
+                  className="flex items-center gap-2"
+                  style={{
+                    background: "rgba(196,114,42,0.1)",
+                    border: "1px solid rgba(196,114,42,0.35)",
+                    borderRadius: 3,
+                    padding: "10px 18px",
+                    fontFamily: "'Figtree', sans-serif",
+                    fontSize: "0.9rem",
+                    fontWeight: 500,
+                    color: "var(--copper-light)",
+                    letterSpacing: "0.03em",
+                  }}
+                >
+                  <MapPin size={13} style={{ color: "var(--copper-light)", flexShrink: 0 }} />
+                  {name}
+                </div>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div style={{ height: 1, background: "rgba(196,114,42,0.15)", marginBottom: 24 }} />
+
+            {/* Secondary areas */}
+            <p
+              style={{
+                fontFamily: "'Figtree', sans-serif",
+                fontSize: "0.7rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "var(--copper)",
+                marginBottom: 14,
+              }}
+            >
+              Also Serving
+            </p>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {secondaryAreas.map((name) => (
+                <div
+                  key={name}
+                  className="flex items-center gap-2"
+                  style={{
+                    background: "transparent",
+                    border: "1px solid rgba(196,114,42,0.2)",
+                    borderRadius: 3,
+                    padding: "8px 14px",
+                    fontFamily: "'Figtree', sans-serif",
+                    fontSize: "0.82rem",
+                    fontWeight: 400,
+                    color: "var(--copper)",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  <MapPin size={11} style={{ color: "var(--copper)", flexShrink: 0, opacity: 0.7 }} />
+                  {name}
+                </div>
+              ))}
             </div>
 
             <p
-              className="mt-4"
               style={{
                 fontFamily: "'Figtree', sans-serif",
                 fontSize: "0.78rem",
                 color: "var(--copper)",
-                opacity: 0.7,
-                letterSpacing: "0.05em",
+                opacity: 0.55,
+                letterSpacing: "0.04em",
               }}
             >
               Don't see your town? Contact us — our coverage is constantly expanding.
