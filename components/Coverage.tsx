@@ -69,44 +69,46 @@ export default function Coverage() {
           {/* Right: areas grid */}
           <div>
             <div
-              className="grid grid-cols-2 gap-px"
-              style={{ background: "rgba(196,114,42,0.08)" }}
+              style={{
+                border: "1px solid rgba(196,114,42,0.25)",
+                borderRadius: 4,
+                overflow: "hidden",
+              }}
             >
-              {areas.map((area) => (
-                <div
-                  key={area.name}
-                  className="flex items-center gap-3 px-5 py-4 transition-all duration-200 group cursor-default"
-                  style={{
-                    background: "var(--charcoal)",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(196,114,42,0.06)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "var(--charcoal)";
-                  }}
-                >
-                  <MapPin
-                    size={13}
-                    style={{
-                      color: area.primary ? "var(--copper)" : "var(--warm-grey)",
-                      flexShrink: 0,
+              <div
+                className="grid grid-cols-2"
+                style={{ gap: "1px", background: "rgba(196,114,42,0.15)" }}
+              >
+                {areas.map((area) => (
+                  <div
+                    key={area.name}
+                    className="flex items-center gap-3 px-5 py-4 cursor-default transition-all duration-200"
+                    style={{ background: "var(--charcoal)" }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(196,114,42,0.1)";
                     }}
-                  />
-                  <div>
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "var(--charcoal)";
+                    }}
+                  >
+                    <MapPin
+                      size={13}
+                      style={{ color: "var(--copper-light)", flexShrink: 0 }}
+                    />
                     <span
                       style={{
                         fontFamily: "'Figtree', sans-serif",
                         fontSize: "0.875rem",
                         fontWeight: area.primary ? 600 : 400,
-                        color: area.primary ? "var(--parchment)" : "var(--light-grey)",
+                        color: area.primary ? "var(--copper-light)" : "var(--copper)",
+                        letterSpacing: area.primary ? "0.02em" : undefined,
                       }}
                     >
                       {area.name}
                     </span>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             <p
@@ -114,7 +116,8 @@ export default function Coverage() {
               style={{
                 fontFamily: "'Figtree', sans-serif",
                 fontSize: "0.78rem",
-                color: "var(--warm-grey)",
+                color: "var(--copper)",
+                opacity: 0.7,
                 letterSpacing: "0.05em",
               }}
             >
