@@ -250,18 +250,18 @@ export default function Contact() {
                       onFocus={(e) => (e.target.style.borderColor = "rgba(196,114,42,0.6)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(196,114,42,0.2)")}
                     >
-                      <option value="">Select a service...</option>
-                      <option>Oven Cleaning</option>
-                      <option>BBQ Cleaning</option>
-                      <option>Washing Machine Repair</option>
-                      <option>Washer Dryer Repair</option>
-                      <option>Fridge Freezer Repair</option>
-                      <option>Dishwasher Repair</option>
-                      <option>Tumble Dryer Repair</option>
-                      <option>Oven Repair</option>
-                      <option>Extractor Hood Repair</option>
-                      <option>New Appliance Supply</option>
-                      <option>Other</option>
+                      <option value="" style={{ background: "#1a1f2e", color: "#e8dcc8" }}>Select a service...</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>Oven Cleaning</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>BBQ Cleaning</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>Washing Machine Repair</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>Washer Dryer Repair</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>Fridge Freezer Repair</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>Dishwasher Repair</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>Tumble Dryer Repair</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>Oven Repair</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>Extractor Hood Repair</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>New Appliance Supply</option>
+                      <option style={{ background: "#1a1f2e", color: "#e8dcc8" }}>Other</option>
                     </select>
                   </div>
 
