@@ -284,8 +284,20 @@ body::after {
   .hero-content { padding: 110px 20px 64px !important; }
   .hero-ctas    { flex-direction: column !important; align-items: stretch !important; }
   .hero-ctas a  { width: 100% !important; justify-content: center !important; }
-  .hero-stats   { flex-wrap: wrap !important; }
-  .hero-stats > div { min-width: 50% !important; }
+
+  /* Hero stats — 2 per row, centred */
+  .hero-stats {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px 0 !important;
+  }
+  .hero-stat-item {
+    min-width: 50% !important;
+    flex: 0 0 50% !important;
+    justify-content: center !important;
+  }
+  /* Hide vertical dividers between stats on mobile */
+  .hero-stat-divider { display: none !important; }
 
   /* Services — hide video, expand cards full width */
   .services-video  { display: none !important; }
@@ -294,8 +306,22 @@ body::after {
   /* Section inner padding */
   .inner-pad { padding-left: 20px !important; padding-right: 20px !important; }
 
-  /* WhyUs stat badge — pull back inside container */
-  .stat-badge { right: 12px !important; bottom: 16px !important; }
+  /* WhyUs stat badge — reposition to inside the frame, centred */
+  .about-photo-col { overflow: visible; }
+  .stat-badge {
+    bottom: 16px !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+  }
+
+  /* About grid text — centre on mobile */
+  .about-grid .section-label,
+  .about-grid h2,
+  .about-grid p,
+  .about-grid blockquote { text-align: center !important; }
+  .about-grid > div:first-child { display: flex; flex-direction: column; align-items: center !important; }
+  .about-grid blockquote { border-left: none !important; border-top: 2px solid var(--copper); padding: 16px 0 0 !important; }
+  .about-grid > div:first-child > div:first-child { justify-content: center !important; }
 
   /* Team photo height — shorter on mobile */
   .team-grid > div > div:first-child { height: 220px !important; }
@@ -303,7 +329,7 @@ body::after {
 
 /* Small mobile (≤480px) */
 @media (max-width: 480px) {
-  .hero-stats > div { min-width: 50% !important; }
+  .hero-stats > div { min-width: 50% !important; flex: 0 0 50% !important; }
   .reasons-grid     { grid-template-columns: 1fr !important; }
   .team-grid        { grid-template-columns: 1fr !important; }
   .footer-grid      { grid-template-columns: 1fr !important; }

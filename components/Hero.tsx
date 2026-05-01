@@ -188,7 +188,7 @@ export default function Hero() {
               { stars: true, label: "5-Star Rated" },
               { value: "Essex\n& Suffolk", label: "Areas Covered" },
             ].map((stat, i) => (
-              <div key={stat.label} style={{ display: "flex", alignItems: "center" }}>
+              <div key={stat.label} className="hero-stat-item" style={{ display: "flex", alignItems: "center" }}>
                 <div style={{ padding: i === 0 ? "0 28px 0 0" : "0 28px" }}>
                   {"stars" in stat ? (
                     <div style={{ display: "flex", gap: 2, marginBottom: 5 }}>
@@ -221,7 +221,7 @@ export default function Hero() {
                   </div>
                 </div>
                 {i < 3 && (
-                  <div style={{ width: 1, height: 32, background: "rgba(196,114,42,0.18)", flexShrink: 0 }} />
+                  <div className="hero-stat-divider" style={{ width: 1, height: 32, background: "rgba(196,114,42,0.18)", flexShrink: 0 }} />
                 )}
               </div>
             ))}

@@ -141,7 +141,7 @@ export default function WhyUs() {
           </div>
 
           {/* Right: double-bezel photo */}
-          <div className="reveal reveal-delay-2" style={{ position: "relative" }}>
+          <div className="reveal reveal-delay-2 about-photo-col" style={{ position: "relative" }}>
             {/* Outer shell */}
             <div style={{
               padding: "8px",
@@ -205,6 +205,7 @@ export default function WhyUs() {
               border: "1px solid rgba(196,114,42,0.22)",
               padding: "18px 24px",
               boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+              textAlign: "center",
             }}>
               <div style={{
                 fontFamily: "'Cormorant Garamond', serif",
